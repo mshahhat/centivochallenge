@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import uniqueValidator from "mongoose-unique-validator";
 
 const { Schema } = mongoose;
 
@@ -12,7 +11,5 @@ const userSchema = new Schema(
   },
   { timestamps: true }
 );
-
-userSchema.plugin(uniqueValidator);
 
 export default mongoose.model("User", userSchema, "users");
