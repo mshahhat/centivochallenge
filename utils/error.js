@@ -1,0 +1,22 @@
+class CustomError extends Error {
+  constructor({ statusCode, message }) {
+    super();
+    this.statusCode = statusCode;
+    this.message = message;
+  }
+}
+
+const handleError = (err, req, res, next) => {
+  let { statusCode, message } = err;
+  console.error(message);
+  if (!statusCode) {
+    statusCode = 500; // Default to 500 if no status code is provided
+  }
+  res.status(statusCode).json({
+    status: "error",
+    statusCode,
+    message,
+  });
+};
+
+export { handleError, CustomError };
